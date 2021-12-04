@@ -1,0 +1,46 @@
+﻿
+@model IEnumerable<http5112_assignment4_cummulative_p2.Models.Teacher>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<!--Form to serch box-->
+<h2>Teacher List</h2>
+<form method="GET" action="/Teacher/List">
+    <input type="text" placeholder="Search Here" name="SearchKey" id="SearchKey" />
+    <input type="submit" value="Search" />
+</form>
+
+<div>
+    <a href="/Teacher/New">Create a new Teacher</a>
+</div>
+
+
+<!--A foreach function to loop each teacher in the db-->
+@foreach (var Teacher in Model)
+{
+    <div>
+        <table>
+            <tr>
+                <!--Table headings-->
+                <th>Teacher ID</th>
+                <th>Teacher First Name</th>
+                <th>Teacher Last Name</th>
+                <th>Employee Number</th>
+                <th>Hire Date</th>
+                <th>Salary</th>
+            </tr>
+            <tr>
+                <!--Table rows-->
+                <td><a href="/Teacher/Show/@Teacher.teacherId">@Teacher.teacherId</a></td><!--Link to access the teacher data based on teacherid-->
+                <td>@Teacher.teacherFName</td>
+                <td>@Teacher.teachetLName</td>
+                <td>@Teacher.employeeNumber</td>
+                <td>@Teacher.hiredate</td>
+                <td>@Teacher.salary</td>
+            </tr>
+        </table>
+
+    </div>
+}

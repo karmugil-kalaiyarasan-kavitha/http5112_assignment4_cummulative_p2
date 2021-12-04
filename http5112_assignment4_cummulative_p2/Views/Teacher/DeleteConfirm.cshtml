@@ -1,0 +1,15 @@
+﻿@model http5112_assignment4_cummulative_p2.Models.Teacher
+
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+
+
+<a href="/Teacher/List">Back to List</a>
+
+<h2>Are you sure you want to delete @Model.teacherFName @Model.teachetLName</h2>
+
+<form action="/Teacher/Delete/@Model.teacherId" method="POST">
+    <input type="submit" value="Delete Teacher"/>
+</form>
