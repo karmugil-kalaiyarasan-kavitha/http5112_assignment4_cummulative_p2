@@ -57,6 +57,53 @@ namespace http5112_assignment4_cummulative_p2.Controllers
             return View(SelectedTeacher);
         }
 
+
+        /// <summary>
+        /// Returns a Teacher in the system based on the teacher id to the view
+        /// </summary>
+        /// <param name="id">eg:1</param>
+        /// <example>Teacher/Show/{id}</example>
+        /// <returns>
+        /// A Teacher (teacherfname,teacherlname,teacherid,employeenumber,hiredate,salary)
+        /// </returns>
+
+        //get: Teacher/Show/{id}
+
+        [HttpGet]
+        [Route("Teacher/Show/{id}")]
+        public ActionResult Update(int id)
+        {
+            //instanciate the datacontroller for teacher.
+            TeacherDataController Controller = new TeacherDataController();
+            //create a variable to store the teacher data by id
+            Teacher SelectedTeacher = Controller.FindTeacher(id);
+            //List<Classes> classforteacher = findclasses;
+            return View(SelectedTeacher);
+        }
+
+        /// <summary>
+        /// Update page where there is an option to update the Teacher firstname,lastname,employeenumber based on their id
+        /// </summary>
+        /// <param name="id">eg:1</param>
+        /// <example>Teacher/Update/{id}</example>
+
+
+        //POST: Teacher/Update/{id}
+
+        [HttpPost]
+        [Route("Teacher/Update/{id}")]
+        public ActionResult Update(int id, string teacherFName, string teachetLName, string employeeNumber)
+        {
+            TeacherDataController Controller = new TeacherDataController();
+            Teacher SelectedTeacher = new Teacher();
+            SelectedTeacher.teacherId = id;
+            SelectedTeacher.teacherFName = teacherFName;
+            SelectedTeacher.teachetLName = teachetLName;
+            SelectedTeacher.employeeNumber = employeeNumber;
+            Controller.UpdateTeacher(SelectedTeacher);
+            return RedirectToAction("Show/" + id);
+        }
+
         /// <summary>
         /// A page to enter details about the new Teacher
         /// </summary>

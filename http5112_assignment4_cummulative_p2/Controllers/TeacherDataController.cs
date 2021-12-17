@@ -180,6 +180,39 @@ namespace http5112_assignment4_cummulative_p2.Controllers
         }
 
         /// <summary>
+        /// Update a Teacher firstname,lastname,employeenumber into the database
+        /// </summary>
+        /// <param name="SelectedTeacher">selected Teacher Object</param>
+        /// <returns>
+        /// A Teacher (teacherfname,teacherlname,employeenumber)
+        /// </returns>
+
+        public void UpdateTeacher(Teacher SelectedTeacher)
+        {
+            string query = "update teachers set teacherfname=@teacherFName, teacherlname=@teachetLName, employeenumber=@employeeNumber where teacherid=@teacherId";
+            
+            MySqlConnection Conn = School.AccessDatabase();
+
+            Conn.Open();
+
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            cmd.CommandText = query;
+
+            cmd.Parameters.AddWithValue("@teacherId", SelectedTeacher.teacherId);
+            cmd.Parameters.AddWithValue("@teacherFName", SelectedTeacher.teacherFName);
+            cmd.Parameters.AddWithValue("@teachetLName", SelectedTeacher.teachetLName);
+            cmd.Parameters.AddWithValue("@employeeNumber", SelectedTeacher.employeeNumber);
+
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+
+            Conn.Close();
+
+        }
+
+        /// <summary>
         /// Delete a Teacher in the database based on the teacherid provided.
         /// </summary>
         /// <param name="id">the primary key teacherid of the Teacher</param>

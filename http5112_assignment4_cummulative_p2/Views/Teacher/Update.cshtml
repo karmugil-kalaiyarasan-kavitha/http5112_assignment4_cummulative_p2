@@ -1,0 +1,27 @@
+﻿
+@model http5112_assignment4_cummulative_p2.Models.Teacher
+
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update Teacher</h2>
+<form method="POST" action="/Teacher/Update/@Model.teacherId">
+    <div>
+        <div><label>Teacher First Name:</label></div>
+        <div><input type="text" name="teacherFName" value="@Model.teacherFName" /></div>
+    </div>
+    <div>
+        <div><label>Teacher Last Name:</label></div>
+        <div><input type="text" name="teachetLName" value="@Model.teachetLName" /></div>
+    </div>
+    <div>
+        <div><label>Teacher Employee Number:</label></div>
+        <div><input type="text" name="employeeNumber" value="@Model.employeeNumber" /></div>
+    </div>
+
+    <div>
+        <input type="submit" value="Update Article"/>
+    </div>
+</form>
